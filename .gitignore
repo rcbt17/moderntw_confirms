@@ -1,0 +1,38 @@
+/.bundle/
+/.yardoc
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+.rspec_status
+
+# Gem files
+*.gem
+*.rbc
+
+# Environment normalization:
+/vendor/bundle
+/lib/bundler/man/
+Gemfile.lock
+
+# Test app specific
+/test_confirms_app/log/
+/test_confirms_app/tmp/
+/test_confirms_app/storage/
+/test_confirms_app/db/*.sqlite3
+/test_confirms_app/db/*.sqlite3-*
+/test_confirms_app/node_modules
+/test_confirms_app/public/assets
+/test_confirms_app/.byebug_history
+/test_confirms_app/config/master.key
+/test_confirms_app/config/credentials/*.key
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
