@@ -9,6 +9,8 @@
       this.initialized = false;
       this.initializationAttempts = 0;
       this.maxInitAttempts = 3;
+      this.useModal = true;
+      this.enableOnMobile = false;
 
       try {
         this.init();
@@ -48,6 +50,13 @@
         }
 
         this.setupModalElements();
+        this.readConfiguration();
+        this.useModal = this.shouldUseModal();
+
+        if (!this.useModal) {
+          console.info('ModerntwConfirms: Using native browser confirms on mobile devices.');
+        }
+
         this.interceptTurboConfirms();
         this.setupModalHandlers();
         this.initialized = true;
@@ -59,6 +68,8 @@
     }
 
     fallbackToNative() {
+      this.useModal = false;
+
       if (window.Turbo && window.Turbo.config && window.Turbo.config.forms) {
         Turbo.config.forms.confirm = (message) => {
           return Promise.resolve(window.confirm(message));
@@ -213,7 +224,7 @@
     }
 
     showModal(message, callback) {
-      if (!this.modal || !this.initialized) {
+      if (!this.modal || !this.initialized || !this.useModal) {
         const result = window.confirm(message);
         if (callback) callback(result);
         return;
@@ -371,6 +382,47 @@
       }
       if (this.modal && this.tabHandler) {
         this.modal.removeEventListener('keydown', this.tabHandler);
+      }
+    }
+
+    readConfiguration() {
+      try {
+        if (!this.modal || !this.modal.dataset) {
+          this.enableOnMobile = false;
+          return;
+        }
+
+        this.enableOnMobile = this.modal.dataset.enableOnMobile === 'true';
+      } catch (error) {
+        console.error('ModerntwConfirms: Error reading configuration', error);
+        this.enableOnMobile = false;
+      }
+    }
+
+    shouldUseModal() {
+      try {
+        if (this.enableOnMobile) {
+          return true;
+        }
+
+        return !this.isMobileDevice();
+      } catch (error) {
+        console.error('ModerntwConfirms: Error determining modal usage preference', error);
+        return true;
+      }
+    }
+
+    isMobileDevice() {
+      try {
+        const touchCapable = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
+        const narrowViewport = window.matchMedia ? window.matchMedia('(max-width: 768px)').matches : false;
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera || '';
+        const mobileRegex = /Mobi|Android|iP(ad|hone|od)|Silk|Kindle|BlackBerry|IEMobile|Opera Mini/i;
+
+        return touchCapable && (narrowViewport || mobileRegex.test(userAgent));
+      } catch (error) {
+        console.error('ModerntwConfirms: Error detecting device type', error);
+        return false;
       }
     }
   }

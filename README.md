@@ -96,8 +96,13 @@ ModerntwConfirms.configure do |config|
   config[:modal_class] = "rounded-3xl shadow-2xl"
   config[:confirm_button_class] = "bg-indigo-600 hover:bg-indigo-700"
   config[:cancel_button_class] = "bg-gray-200 hover:bg-gray-300"
+  config[:enable_on_mobile] = true # Opt into modals on phones/tablets
 end
 ```
+
+### Mobile Behavior
+
+Native confirmation dialogs feel familiar on mobile, so the gem defaults to using the browser's built-in confirms for touch devices. If you prefer the Tailwind modal experience everywhere, set `config[:enable_on_mobile] = true` in your initializer.
 
 ### Animation Customization
 

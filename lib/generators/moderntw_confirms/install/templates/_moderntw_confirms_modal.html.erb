@@ -1,9 +1,13 @@
+<% config = ModerntwConfirms.config %>
+<% enable_on_mobile = config.fetch(:enable_on_mobile, false) %>
+
 <div id="moderntw-confirm-modal"
      class="hidden fixed inset-0 z-[99999] overflow-y-auto"
      aria-labelledby="moderntw-modal-title"
      aria-modal="true"
      role="dialog"
-     data-turbo-permanent>
+     data-turbo-permanent
+     data-enable-on-mobile="<%= enable_on_mobile %>">
 
   <div class="fixed inset-0" data-modal-backdrop>
     <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm"></div>
@@ -62,7 +66,7 @@
 
 <style>
   #moderntw-confirm-modal {
-    transition: opacity 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: opacity 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
     will-change: opacity;
   }
 
@@ -75,7 +79,7 @@
   }
 
   #moderntw-confirm-modal [data-modal-panel] {
-    transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 180ms ease-out;
     will-change: transform, opacity;
   }
 
@@ -85,20 +89,20 @@
   }
 
   #moderntw-confirm-modal:not(.modal-showing) [data-modal-panel] {
-    transform: scale(0.9) translateY(20px);
+    transform: scale(0.95) translateY(10px);
     opacity: 0;
   }
 
   @supports (backdrop-filter: blur(0px)) or (-webkit-backdrop-filter: blur(0px)) {
     #moderntw-confirm-modal [data-modal-backdrop] > div {
-      -webkit-backdrop-filter: blur(12px);
-      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
     }
   }
 
   @supports not ((backdrop-filter: blur(0px)) or (-webkit-backdrop-filter: blur(0px))) {
     #moderntw-confirm-modal [data-modal-backdrop] > div {
-      background-color: rgba(17, 24, 39, 0.75);
+      background-color: rgba(17, 24, 39, 0.72);
     }
   }
 </style>

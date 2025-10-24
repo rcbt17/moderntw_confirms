@@ -17,4 +17,8 @@ ModerntwConfirms.configure do |config|
   # You can also add custom classes for specific use cases:
   # For delete confirmations, you might want red buttons:
   # config[:delete_confirm_button_class] = "bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded"
+
+  # Use Tailwind modal confirms on mobile devices (defaults to native mobile confirms)
+  # Set to true if you prefer the custom modal experience on phones and tablets
+  # config[:enable_on_mobile] = true
 end
