@@ -5,6 +5,8 @@ Beautiful Tailwind CSS confirmation modals for Rails applications. Drop-in repla
 [![Gem Version](https://badge.fury.io/rb/moderntw_confirms.svg)](https://badge.fury.io/rb/moderntw_confirms)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+![ModerntwConfirms demo](demo.gif)
+
 ## Features
 
 - **Zero Configuration** - Works with your existing Rails code immediately
