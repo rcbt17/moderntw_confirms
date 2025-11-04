@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [1.1.1] - 2025-01-04
 
 ### Changed
 - **BREAKING (but backwards compatible)**: Refactored configuration to use accessor methods instead of hash keys
