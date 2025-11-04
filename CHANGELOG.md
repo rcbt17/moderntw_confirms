@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.1.1] - 2025-01-04
+## [1.1.1] - 2025-11-04
 
 ### Changed
 - **BREAKING (but backwards compatible)**: Refactored configuration to use accessor methods instead of hash keys
@@ -9,7 +9,7 @@
   - The old hash-based syntax is still supported via the `config` alias for backwards compatibility
 - Removed dependency on ActiveSupport's `mattr_accessor`
 
-## [1.1.0] - 2024-05-xx
+## [1.1.0] - 2024-10-24
     - Default to native confirms on mobile with optional opt-in via config[:enable_on_mobile]
 
 ### Added
