@@ -1,6 +1,13 @@
 # Changelog
 
+## [Unreleased]
 
+### Changed
+- **BREAKING (but backwards compatible)**: Refactored configuration to use accessor methods instead of hash keys
+  - Old syntax: `config[:backdrop_class] = "..."`
+  - New syntax: `config.backdrop_class = "..."`
+  - The old hash-based syntax is still supported via the `config` alias for backwards compatibility
+- Removed dependency on ActiveSupport's `mattr_accessor`
 
 ## [1.1.0] - 2024-05-xx
     - Default to native confirms on mobile with optional opt-in via config[:enable_on_mobile]

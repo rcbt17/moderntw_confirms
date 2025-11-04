@@ -6,6 +6,6 @@ RSpec.describe ModerntwConfirms do
   end
 
   it "defaults to mobile fallback" do
-    expect(ModerntwConfirms.config[:enable_on_mobile]).to eq(false)
+    expect(ModerntwConfirms.config.enable_on_mobile).to eq(false)
   end
 end
